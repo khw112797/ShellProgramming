@@ -1,0 +1,73 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+PATH=$PATH:/test
+export PATH=$HOME/.local/bin:$PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+ 
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+#
+# Sfecific Configuration
+#
+#export PS1='[\u@\h \w]\$ ' 
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+alias ls='ls --color=auto -h'
+alias pps='ps -ef | head-1 ; ps -ef | grep $1 | grep -vw grep | grep -vw ps'
+alias vi='/usr/bin/vim'
+alias grep='grep -i --color'
+alias c="clear"
+alias df='df -h -T'
+#
+# ble.sh
+#
+# source ~/.local/share/blesh/ble.sh
+source ~/.local/share/blesh/ble.sh
+#
+# rsync Alias
+alias RS='rsync -az --delete -e ssh'    # RS /backup/ main:/backup/server1
+alias LS='rsync -a --delete'            # LS /backup/ /test100
+
+alias fwcmd='firewall-cmd --permanent'
+alias fwreload='firewall-cmd --reload'
+alias fwlist='firewall-cmd --list-all'
+
+
+#
+# DNS Server Alias
+#
+alias named.conf='vi /etc/named.conf'
+alias named.rfc1912.zones='vi /etc/named.rfc1912.zones' 
+alias DNS='cd /var/named'
+alias dnslog='tail -f /var/log/messages'
+#
+#
+#
+#alias aaa='systemctl restart vsftpd'
+#alias bbb='tfp localhost'
+
+
+#
+# Script Alias
+export PATH=$PATH:/root/shell:/root/scripts
+alias aaa='/root/scripts/makescript.sh'
+
+alias code='code --no-sandbox --user-data-dir=/root/vscode'
+alias vscode='code'
+
+
